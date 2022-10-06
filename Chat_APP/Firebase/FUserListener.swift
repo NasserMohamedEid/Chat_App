@@ -106,5 +106,26 @@ class FUserListener{
             completion(error)
         }
     }
-
+//MARK: -Download all User
+    func downloadAllUsersFromFirestore(complition: @escaping (_ allUser:[User])->Void ){
+        var users:[User]=[]
+        FirestoreReference(.User).getDocuments { snapshot, error in
+            guard let documents=snapshot?.documents else{
+                print ("No document found")
+                return
+            }
+            let allUsers=documents.compactMap { snapshot->User? in
+                return try? snapshot.data(as: User.self)
+            }
+            for user in allUsers{
+                if user.id != User.currentId{
+                    users.append(user)
+                }
+            }
+            complition(users)
+        }
+        
+   
+    }
+    
 }
