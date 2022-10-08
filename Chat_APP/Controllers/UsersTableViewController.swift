@@ -8,33 +8,41 @@
 import UIKit
 
 class UsersTableViewController: UITableViewController {
-    var allUsers : [User]?
+    var allUsers : [User] = []
+    var filteredUser : [User] = []
+    let searchController=UISearchController(searchResultsController: nil)
     override func viewDidLoad() {
         super.viewDidLoad()
-        allUsers = [User.currentUser!]
-        
+        tableView.tableFooterView=UIView()
+        navigationItem.searchController=searchController
+        searchController.searchResultsUpdater=self
         downloadUsers()
+        self.refreshControl=UIRefreshControl()
+        self.tableView.refreshControl=self.refreshControl
+        
         
     }
 
+    //MARK: -UIScrollView Delegate function
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if self.refreshControl!.isRefreshing{
+            self.downloadUsers()
+            self.refreshControl?.endRefreshing()
+        }
+    }
+    
     // MARK: - Table view data source
 
   
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if allUsers != nil{
-            return allUsers!.count
-        }
-        return 1
+        return searchController.isActive ? filteredUser.count : allUsers.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell=tableView.dequeueReusableCell(withIdentifier: "Cell",for: indexPath) as! UsersTableViewCell
-        if allUsers != nil{
-            cell.configureCell(user: allUsers![indexPath.row])
-        }else{
-            cell.configureCell(user: User.currentUser!)
-        }
+        let user=searchController.isActive ? filteredUser[indexPath.row] :allUsers[indexPath.row]
+        cell.configureCell(user: user)
         
         return cell
     }
@@ -48,5 +56,19 @@ class UsersTableViewController: UITableViewController {
             }
         }
     }
+   
+   
+   
 
+}
+//MARK: -Extention
+extension UsersTableViewController:UISearchResultsUpdating{
+    func updateSearchResults(for searchController: UISearchController) {
+        filteredUser=allUsers.filter({ user ->Bool in
+            return user.username.lowercased().contains(searchController.searchBar.text!.lowercased())
+        })
+        tableView.reloadData()
+    }
+    
+    
 }
