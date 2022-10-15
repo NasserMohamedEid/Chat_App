@@ -46,7 +46,10 @@ class UsersTableViewController: UITableViewController {
         
         return cell
     }
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let user=searchController.isActive ? filteredUser[indexPath.row] :allUsers[indexPath.row]
+        showUserProfile(user)
+    }
 //MARK: -download all user from fire store
     private func downloadUsers(){
         FUserListener.shared.downloadAllUsersFromFirestore { firestoreAllUser in
@@ -69,6 +72,10 @@ extension UsersTableViewController:UISearchResultsUpdating{
         })
         tableView.reloadData()
     }
-    
+    func showUserProfile(_ user:User){
+        let profileView=UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileView") as! ProfileTableViewController
+        profileView.user=user
+        navigationController?.pushViewController(profileView, animated: true)
+    }
     
 }
