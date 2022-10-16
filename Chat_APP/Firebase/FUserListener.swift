@@ -13,7 +13,7 @@ class FUserListener{
     //MARK: -Login
     func loginUser(email:String,password:String,complition:@escaping (_ error:Error?,_ isVeryfied:Bool)->Void){
         Auth.auth().signIn(withEmail: email, password: password) { authDataResult, error in
-//            && authDataResult!.user.isEmailVerified
+            //            && authDataResult!.user.isEmailVerified
             if error == nil  {
                 complition(error,true)
                 self.downloadFromFirestore(userId:authDataResult!.user.uid)
@@ -48,15 +48,15 @@ class FUserListener{
     
     func saveUserToFirestore(_ user:User){
         do{
-           try FirestoreReference(.User).document(user.id).setData(from:user)
-
+            try FirestoreReference(.User).document(user.id).setData(from:user)
+            
         }catch{
             
         }
     }
     
     //MARK: -download From Firestore
-  private  func downloadFromFirestore(userId:String)
+    private  func downloadFromFirestore(userId:String)
     {
         FirestoreReference(.User).document(userId).getDocument { document, error in
             guard let userDocument=document else{
@@ -96,8 +96,8 @@ class FUserListener{
             UserDefaults.standard.synchronize() //MARK: -> Q
             completion(nil)
         }catch let error as NSError {
-                completion(error)
-            }
+            completion(error)
+        }
         
     }
     //MARK: -Forget password
@@ -106,7 +106,7 @@ class FUserListener{
             completion(error)
         }
     }
-//MARK: -Download all User
+    //MARK: -Download all User
     func downloadAllUsersFromFirestore(complition: @escaping (_ allUser:[User])->Void ){
         var users:[User]=[]
         FirestoreReference(.User).getDocuments { snapshot, error in
@@ -125,7 +125,6 @@ class FUserListener{
             complition(users)
         }
         
-   
+        
     }
-    
 }

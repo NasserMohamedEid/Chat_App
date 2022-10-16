@@ -20,7 +20,7 @@ class ChatTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        unreadCounterViewOutlet.layer.cornerRadius=unreadCounterViewOutlet.frame.width/2
+       unreadCounterViewOutlet.layer.cornerRadius = unreadCounterViewOutlet.frame.height/2
     }
 
    
@@ -49,7 +49,7 @@ class ChatTableViewCell: UITableViewCell {
             }
             
         }else {
-            self.avatarImageOutlet.image=UIImage(named: "avatar")
+            self.avatarImageOutlet.image=UIImage(named: "avatar")?.circleMask
         }
         dateLableOutlet.text=timeElapse(chatRoom.date ?? Date())
     }
