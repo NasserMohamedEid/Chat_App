@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestoreSwift
 import Firebase
-struct User :Codable{
+struct User :Codable,Equatable{
     var id=""
     var username:String
     var email:String
@@ -33,6 +33,10 @@ struct User :Codable{
         }
         return nil
 
+    }
+    //MARK: - Q1
+    static func==(lhs:User,rhs:User)->Bool{
+       return rhs.id==lhs.id
     }
 }
 
@@ -63,6 +67,6 @@ func creatDummyUsers(){
         if imageIndex==5{
             imageIndex=1
         }
-        
+
     }
 }

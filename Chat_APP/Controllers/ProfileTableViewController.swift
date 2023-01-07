@@ -40,10 +40,11 @@ class ProfileTableViewController: UITableViewController {
         0.0
     }
    
-//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let headerView=UIView()
-//        headerView.backgroundColor=UIColor(named: "colorTableview")
-//        return headerView
-//    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section==1{
+            print("start chat")
+            let chatId=startChat(sender: User.currentUser!, receiver: user!)
+        }
+    }
   
 }

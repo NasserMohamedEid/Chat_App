@@ -10,6 +10,7 @@
 		542AF89B560823E6420818BF /* Pods_Chat_APP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E802732370250BB0FDED8C01 /* Pods_Chat_APP.framework */; };
 		5830DCC028E375F8001C1942 /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830DCBF28E375F8001C1942 /* UsersTableViewCell.swift */; };
 		5830DCC228E3762F001C1942 /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5830DCC128E3762F001C1942 /* UsersTableViewController.swift */; };
+		586CAC1628FDB06B00F97BAB /* StartChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586CAC1528FDB06B00F97BAB /* StartChat.swift */; };
 		5883CD0228DF46550045993A /* GlobalFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883CD0128DF46550045993A /* GlobalFunction.swift */; };
 		58A46D0128DDFD89005909F7 /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A46D0028DDFD89005909F7 /* FileStorage.swift */; };
 		58A6FD8028DF793A009BE4A8 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A6FD7F28DF793A009BE4A8 /* Extentions.swift */; };
@@ -31,11 +32,13 @@
 		58BB500528D8FABD00D4126D /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BB500428D8FABD00D4126D /* EditProfileTableViewController.swift */; };
 		58BE79D228FAFD430038B72A /* ChatRoomTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BE79D128FAFD430038B72A /* ChatRoomTableViewController.swift */; };
 		58CAF31C28C14CA200FA2D3F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 58CAF31B28C14CA200FA2D3F /* GoogleService-Info.plist */; };
+		58D3B4F429639256002B8BEA /* FChatRoomLisener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D3B4F329639256002B8BEA /* FChatRoomLisener.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5830DCBF28E375F8001C1942 /* UsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewCell.swift; sourceTree = "<group>"; };
 		5830DCC128E3762F001C1942 /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
+		586CAC1528FDB06B00F97BAB /* StartChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartChat.swift; sourceTree = "<group>"; };
 		5883CD0128DF46550045993A /* GlobalFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunction.swift; sourceTree = "<group>"; };
 		58A46D0028DDFD89005909F7 /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
 		58A6FD7F28DF793A009BE4A8 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
@@ -59,6 +62,7 @@
 		58BB500428D8FABD00D4126D /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
 		58BE79D128FAFD430038B72A /* ChatRoomTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomTableViewController.swift; sourceTree = "<group>"; };
 		58CAF31B28C14CA200FA2D3F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		58D3B4F329639256002B8BEA /* FChatRoomLisener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FChatRoomLisener.swift; sourceTree = "<group>"; };
 		9BFF82D23FE0E179297FB518 /* Pods-Chat_APP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat_APP.release.xcconfig"; path = "Target Support Files/Pods-Chat_APP/Pods-Chat_APP.release.xcconfig"; sourceTree = "<group>"; };
 		A5764E6D7D6310E9248D059C /* Pods-Chat_APP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat_APP.debug.xcconfig"; path = "Target Support Files/Pods-Chat_APP/Pods-Chat_APP.debug.xcconfig"; sourceTree = "<group>"; };
 		E802732370250BB0FDED8C01 /* Pods_Chat_APP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chat_APP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +86,7 @@
 				58AB7ED328C4235700CFCC4E /* Constants.swift */,
 				5883CD0128DF46550045993A /* GlobalFunction.swift */,
 				58A6FD7F28DF793A009BE4A8 /* Extentions.swift */,
+				586CAC1528FDB06B00F97BAB /* StartChat.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -129,6 +134,7 @@
 				58AB7ED128C4194E00CFCC4E /* FUserListener.swift */,
 				58A46D0028DDFD89005909F7 /* FileStorage.swift */,
 				58CAF31B28C14CA200FA2D3F /* GoogleService-Info.plist */,
+				58D3B4F329639256002B8BEA /* FChatRoomLisener.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -313,7 +319,9 @@
 				58A6FD8028DF793A009BE4A8 /* Extentions.swift in Sources */,
 				58AC3D6D28F6E0C000DFE83F /* ChatRoom.swift in Sources */,
 				5830DCC028E375F8001C1942 /* UsersTableViewCell.swift in Sources */,
+				58D3B4F429639256002B8BEA /* FChatRoomLisener.swift in Sources */,
 				58AB7ED428C4235700CFCC4E /* Constants.swift in Sources */,
+				586CAC1628FDB06B00F97BAB /* StartChat.swift in Sources */,
 				58BE79D228FAFD430038B72A /* ChatRoomTableViewController.swift in Sources */,
 				58B210B828C006BC00DEFC89 /* SceneDelegate.swift in Sources */,
 				58AB7ED028C4152500CFCC4E /* FCollectionRefrance.swift in Sources */,

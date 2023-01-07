@@ -8,3 +8,5 @@
 import Foundation
 public let KCURRENTUSER="currentuser"
 public let kFILEREFRANCE="gs://chat-app-7727d.appspot.com"
+public let KCHATROOMID="chatRoomId"
+public let KSENDERID="senderId"

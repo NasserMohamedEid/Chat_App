@@ -11,6 +11,7 @@ struct ChatRoom:Codable{
     var id=""
     var chatRoomId=""
     var senderId=""
+    var senderName=""
     var receviverId=""
     var receviverName=""
     @ServerTimestamp var date=Date()
