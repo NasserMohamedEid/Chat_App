@@ -44,6 +44,8 @@ class ProfileTableViewController: UITableViewController {
         if indexPath.section==1{
             print("start chat")
             let chatId=startChat(sender: User.currentUser!, receiver: user!)
+            let privateMSGView=MSGViewController(chatId: chatId, recipientId: user!.id, recipientName: user!.username)
+            navigationController?.pushViewController(privateMSGView, animated: true)
         }
     }
   

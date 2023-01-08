@@ -106,6 +106,28 @@ class FUserListener{
             completion(error)
         }
     }
+    
+    
+    //MARK: -Download Users using id
+    func downloadUsersFromFireStore(withIds:[String],completion:@escaping(_ allUsers:[User])->Void){
+        var count=0
+        var usersArray:[User]=[]
+        
+        for userId in withIds{
+            FirestoreReference(.User).document(userId).getDocument {
+                snapshot, error in
+                guard let document = snapshot else{return}
+                let user = try? document.data(as:User.self)
+                usersArray.append(user!)
+                count+=1
+                if count==withIds.count{
+                    completion(usersArray )
+                }
+            }
+        }
+        
+    }
+    
     //MARK: -Download all User
     func downloadAllUsersFromFirestore(complition: @escaping (_ allUser:[User])->Void ){
         var users:[User]=[]

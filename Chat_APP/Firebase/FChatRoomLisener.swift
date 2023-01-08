@@ -17,6 +17,10 @@ class FChatRoomLisener{
         {print ("No able to save document ",error.localizedDescription)}
     }
     
+    //MARK: -Delete chat Room
+    func deleteChatRoom(_ chatRoom:ChatRoom){
+        FirestoreReference(.Chat).document(chatRoom.id).delete()
+    }
     
     //MARK: -Download All Chat Room
     
