@@ -16,6 +16,10 @@ class MSGViewController: MessagesViewController  {
     private var chatId=""
     private var recipientId=""
     private var recipientName=""
+    let refresControler=UIRefreshControl()
+    let micButton=InputBarButtonItem()
+    
+    let currentuser=MKSender(senderId: User.currentId, displayName: User.currentUser?.username)
     //MARK: -init
     init(chatId: String, recipientId: String , recipientName: String) {
         super.init(nibName: nil, bundle: nil )
@@ -30,18 +34,53 @@ class MSGViewController: MessagesViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        configMessageViewController()
+        configMessageInputBar()
+     
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func configMessageViewController(){
+        messagesCollectionView.messagesDataSource=self
+        messagesCollectionView.messageCellDelegate=self
+        messagesCollectionView.messagesDisplayDelegate=self
+        messagesCollectionView.messagesLayoutDelegate=self
+        
+        //scrol Down When load Message
+        scrollsToLastItemOnKeyboardBeginsEditing=true
+        maintainPositionOnKeyboardFrameChanged=true
+        messagesCollectionView.refreshControl=refresControler
     }
-    */
-
+    
+    private func configMessageInputBar(){
+        messageInputBar.delegate=self
+        let attachButton=InputBarButtonItem()
+        attachButton.image=UIImage(systemName: "paperclip", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))
+        attachButton.setSize(CGSize(width: 30, height: 30), animated: false )
+        attachButton.onTouchUpInside { _ in
+            print("attach Button")
+                //TODO ATTACH Action
+        }
+        let micButton=InputBarButtonItem()
+        micButton.image=UIImage(systemName: "mic.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))
+        micButton.setSize(CGSize(width: 30, height: 30), animated: false )
+        
+        //add gesture recognizer
+        messageInputBar.setStackViewItems([attachButton], forStack: .left, animated: false)
+        messageInputBar.setLeftStackViewWidthConstant(to: 36, animated: false)
+        //update mic Button
+        updateMicStatusShow(show:true)
+        messageInputBar.inputTextView.isImagePasteEnabled=false
+        messageInputBar.backgroundView.backgroundColor = .systemBackground
+        messageInputBar.inputTextView.backgroundColor  = .systemBackground
+    }
+    func updateMicStatusShow(show:Bool){
+        if show{
+            messageInputBar.setStackViewItems([micButton], forStack: .right, animated: false)
+            messageInputBar.setRightStackViewWidthConstant(to: 30, animated: false)
+        }
+        else{messageInputBar.setStackViewItems([messageInputBar.sendButton], forStack: .right, animated: false)
+            messageInputBar.setRightStackViewWidthConstant(to: 55, animated: false)
+            
+        }
+    }
 }
