@@ -19,7 +19,8 @@ class MSGViewController: MessagesViewController  {
     let refresControler=UIRefreshControl()
     let micButton=InputBarButtonItem()
     
-    let currentuser=MKSender(senderId: User.currentId, displayName: User.currentUser?.username)
+    let currentuser=MKSender(senderId: User.currentId, displayName: User.currentUser!.username)
+    let mkMessage :[MKMessage]=[]
     //MARK: -init
     init(chatId: String, recipientId: String , recipientName: String) {
         super.init(nibName: nil, bundle: nil )
@@ -68,12 +69,12 @@ class MSGViewController: MessagesViewController  {
         messageInputBar.setStackViewItems([attachButton], forStack: .left, animated: false)
         messageInputBar.setLeftStackViewWidthConstant(to: 36, animated: false)
         //update mic Button
-        updateMicStatusShow(show:true)
+        updateMicButtonStatus(show:false)
         messageInputBar.inputTextView.isImagePasteEnabled=false
         messageInputBar.backgroundView.backgroundColor = .systemBackground
         messageInputBar.inputTextView.backgroundColor  = .systemBackground
     }
-    func updateMicStatusShow(show:Bool){
+    func updateMicButtonStatus(show:Bool){
         if show{
             messageInputBar.setStackViewItems([micButton], forStack: .right, animated: false)
             messageInputBar.setRightStackViewWidthConstant(to: 30, animated: false)
@@ -82,5 +83,10 @@ class MSGViewController: MessagesViewController  {
             messageInputBar.setRightStackViewWidthConstant(to: 55, animated: false)
             
         }
+    }
+    //MARK: -Actions
+    func send(text:String?,photo:UIImage?,video:String?,audio:String?
+              ,location :String?,audioDuration :Float=0.0){
+        Outgoing.sendMessage(chatId: chatId, text: text, photo: photo, video: video, audio: audio, location: location, memberIds: [User.currentId,recipientId])
     }
 }
